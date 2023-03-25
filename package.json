@@ -5,6 +5,7 @@
   "description": "Pharmacy management system ",
   "main": "server.js",
   "scripts": {
+    "start": "node backend/server.js",
     "server": "nodemon backend/server.js --ignore frontend/*"
   },
   "author": "Eyuel Begashaw",
