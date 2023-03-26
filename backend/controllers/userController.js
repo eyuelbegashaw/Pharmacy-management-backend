@@ -73,6 +73,7 @@ const getProfile = async (req, res, next) => {
         phone_number: user.phone_number,
         gender: user.gender,
         email: user.email,
+        password: "",
       });
     } else {
       res.status(404);

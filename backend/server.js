@@ -25,7 +25,6 @@ cron.schedule(
   async () => {
     try {
       await drugExpiringNotification();
-      console.log("Drug scheduled function executed successfully.");
     } catch (error) {
       console.error("Error executing function:", error);
     }
@@ -41,7 +40,11 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://benetpharmacy-api.onrender.com",
+  })
+);
 
 //Routes
 app.use("/api/user", userRoutes);
