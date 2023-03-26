@@ -26,7 +26,7 @@ router.put("/lowStockDrugs", protect, lowStockDrugs);
 
 router.post("/", protect, createDrug);
 router.get("/:id", protect, getDrug);
-router.delete("/:id", protect, deleteDrug);
-router.put("/:id", protect, updateDrug);
+router.delete("/:id", protect, admin, deleteDrug);
+router.put("/:id", protect, admin, updateDrug);
 
 export default router;

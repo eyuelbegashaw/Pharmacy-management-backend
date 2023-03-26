@@ -42,7 +42,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://benetpharmacy-api.onrender.com",
+    origin: "https://benetpharmacy.onrender.com",
   })
 );
 

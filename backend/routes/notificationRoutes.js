@@ -13,6 +13,6 @@ import {
 //Routes
 router.get("/", protect, getUserNotification);
 router.get("/readNotification", protect, markAllNotificationsAsRead);
-router.get("/clearNotification", protect, clearNotifications);
+router.get("/clearNotification", protect, admin, clearNotifications);
 
 export default router;

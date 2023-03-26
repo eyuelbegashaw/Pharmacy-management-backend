@@ -19,7 +19,7 @@ router.get("/", protect, getTransactions);
 router.post("/", protect, createTransaction);
 
 router.get("/:id", protect, getTransaction);
-router.delete("/:id", protect, deleteTransaction);
-router.put("/:id", protect, updateTransaction);
+router.delete("/:id", protect, admin,deleteTransaction);
+router.put("/:id", protect, admin, updateTransaction);
 
 export default router;
