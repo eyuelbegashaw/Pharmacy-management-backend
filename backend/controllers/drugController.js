@@ -42,6 +42,23 @@ const getDrugs = async (req, res, next) => {
   }
 };
 
+const getAllDrugs = async (req, res, next) => {
+  try {
+    const drugs = await Drug.find({})
+      .populate({
+        path: "category_id",
+        select: "name",
+      })
+      .populate({
+        path: "supplier_id",
+        select: "name ",
+      });
+    return res.status(200).json(drugs);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getDrug = async (req, res, next) => {
   try {
     const drug = await Drug.findById(req.params.id);
@@ -210,6 +227,7 @@ const dailyStock = async (req, res, next) => {
 };
 
 export {
+  getAllDrugs,
   getDrugs,
   getDrug,
   createDrug,

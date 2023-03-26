@@ -5,6 +5,7 @@ import {protect, admin} from "../middlewares/authMiddleware.js";
 
 //Controllers
 import {
+  getAllDrugs,
   getDrugs,
   createDrug,
   updateDrug,
@@ -18,6 +19,7 @@ import {
 
 //Routes
 router.get("/", protect, getDrugs);
+router.get("/allDrugs", protect, getAllDrugs);
 router.put("/dailyStock", protect, dailyStock);
 
 router.get("/expiredDrugs", protect, expiredDrugs);
