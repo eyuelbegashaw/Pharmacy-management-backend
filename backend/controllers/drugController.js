@@ -25,7 +25,9 @@ const createDrug = async (req, res, next) => {
 
 const getDrugs = async (req, res, next) => {
   try {
-    const drugs = await Drug.find({})
+    const drugs = await Drug.find({
+      expiry_date: {$gt: new Date()},
+    })
       .populate({
         path: "category_id",
         select: "name",

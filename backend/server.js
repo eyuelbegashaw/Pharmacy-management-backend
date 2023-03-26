@@ -40,11 +40,13 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(express.json());
+/*
 app.use(
   cors({
     origin: "https://benetpharmacy.onrender.com",
   })
-);
+);*/
+app.use(cors());
 
 //Routes
 app.use("/api/user", userRoutes);
