@@ -104,7 +104,6 @@ const updateProfile = async (req, res, next) => {
 
       let updatedUser = await User.findOneAndUpdate(filter, req.body, {
         new: true,
-        runValidators: true,
       }).select("-password");
 
       return res.status(201).json({
