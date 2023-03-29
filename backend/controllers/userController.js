@@ -190,7 +190,7 @@ const forgotPassword = async (req, res, next) => {
              margin-bottom: 50px; 
              " > 
             <p> 
-            <a href="${process.env.CLIENT_URL}/login/${token}" 
+            <a href="${process.env.CLIENT_URL}/#/login/${token}" 
             style = " 
             border-radius: 5px;
             text-align: center;

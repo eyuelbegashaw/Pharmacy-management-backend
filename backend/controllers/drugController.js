@@ -1,6 +1,6 @@
 import Drug from "../models/drugModel.js";
 import User from "../models/userModel.js";
-import {addDays, startOfDay, endOfDay} from "date-fns";
+import {addDays, startOfDay, endOfDay, addMonths} from "date-fns";
 
 const createDrug = async (req, res, next) => {
   try {
@@ -150,7 +150,7 @@ const lowStockDrugs = async (req, res, next) => {
 const drugExpiringNotification = async () => {
   try {
     const today = new Date();
-    const expirationDate = addDays(today, 30);
+    const expirationDate = addMonths(today, 3);
     const expiringDrugs = await Drug.find({
       expiry_date: {$gte: today, $lte: expirationDate},
     });
