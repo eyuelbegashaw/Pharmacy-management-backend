@@ -53,6 +53,21 @@ const createTransaction = async (req, res, next) => {
 
     // Insert the transaction into the database
     const createdTransactions = await Transaction.insertMany(transactionData);
+
+    const updatedDrugs = await Drug.find({
+      expiry_date: {$gt: new Date()},
+    })
+      .populate({
+        path: "category_id",
+        select: "name",
+      })
+      .populate({
+        path: "supplier_id",
+        select: "name ",
+      });
+
+    //emit function
+    req.io.sockets.emit("drugUpdate", updatedDrugs);
     return res.status(201).json(createdTransactions);
   } catch (error) {
     next(error);

@@ -3,6 +3,8 @@ import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
 import cron from "node-cron";
+import http from "http";
+import {Server} from "socket.io";
 
 //Database
 import connectDB from "./config/db.js";
@@ -40,13 +42,19 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(express.json());
-/*
-app.use(
-  cors({
-    origin: "https://benetpharmacy.onrender.com",
-  })
-);*/
 app.use(cors());
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cosr: {
+    origin: process.env.CLIENT_URL,
+  },
+});
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
 
 //Routes
 app.use("/api/user", userRoutes);
@@ -60,4 +68,4 @@ app.use(NotFound);
 app.use(ErrorMiddleware);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+server.listen(PORT, console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
