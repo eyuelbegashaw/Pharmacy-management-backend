@@ -47,8 +47,12 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cosr: {
-    origin: process.env.CLIENT_URL,
+    origin: "*",
   },
+});
+
+io.on("connection", socket => {
+  console.log(socket.id);
 });
 
 app.use((req, res, next) => {
