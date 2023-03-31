@@ -42,20 +42,17 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+  })
+);
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cosr: {
-    origin: "*",
+    origin: process.env.CLIENT_URL,
   },
-});
-
-io.on("connection", socket => {
-  console.log(socket.id);
-  socket.on("connect_error", err => {
-    console.log(`connect_error due to ${err.message}`);
-  });
 });
 
 app.use((req, res, next) => {

@@ -131,6 +131,11 @@ const dailyTransaction = async (req, res, next) => {
         path: "sale_by",
         select: "name",
       });
+    } else if (!startDate && !endDate && !sale_by) {
+      dailyTransactions = await Transaction.find({}).populate({
+        path: "sale_by",
+        select: "name",
+      });
     }
 
     return res.status(200).json(dailyTransactions);
