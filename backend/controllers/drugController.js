@@ -128,7 +128,7 @@ const drugsExpiringSoon = async (req, res, next) => {
   try {
     const daysToExpiration = req.body.days;
     const today = new Date();
-    const expirationDate = addDays(today, daysToExpiration);
+    const expirationDate = addMonths(today, daysToExpiration);
     const expiredDrugs = await Drug.find({
       expiry_date: {$gte: today, $lte: expirationDate},
     });

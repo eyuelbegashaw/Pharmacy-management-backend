@@ -22,7 +22,6 @@ const loginUser = async (req, res, next) => {
       throw new Error("Invalid credentials");
     }
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
